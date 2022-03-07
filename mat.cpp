@@ -48,7 +48,7 @@ namespace ariel {
             }
             ans+='\n';
         }
-        for (int i = 0; i < row; ++i){
+        for (int i = 0; i < rowLength; ++i){
             delete [] matrix[i];
         }
         delete [] matrix;

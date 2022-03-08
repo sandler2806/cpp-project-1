@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 #include "mat.hpp"
@@ -16,11 +17,9 @@ namespace ariel {
         int rowLength=row;
         int collumLength=collum;
         char symbol=a;
-        // create matrix of chars and allocate memory
-        char** matrix = new char*[row];
-        for (int i = 0; i < row; ++i){
-            matrix[i] = new char[collum];
-        }
+        // create matrix of chars
+        vector<vector<char>> matrix( row, vector<char>( collum ) );
+
         // fill the bounds of the matrix until the row\collum number is less than 1
         while (row>=1 && collum>=1){
             // find the index to start fill from
@@ -49,15 +48,11 @@ namespace ariel {
         // convert the matrix to string
         for (int i = 0; i < rowLength; ++i) {
             for (int j = 0; j < collumLength; ++j) {
-                ans+= matrix[i][j];
+                ans+=matrix[i][j];
             }
             ans+='\n';
         }
-        // free the matrix memory
-        for (int i = 0; i < rowLength; ++i){
-            delete [] matrix[i];
-        }
-        delete [] matrix;
+
         return ans;
     }
 }

@@ -4,7 +4,9 @@ using namespace std;
 #include "mat.hpp"
 
 namespace ariel {
+    // mat return string that represents a rug
     string mat(int collum,int row,char a,char b) {
+        // check if one number is odd or negative
         if(row%2==0 || collum%2==0){
             throw invalid_argument( "cMat size is always odd" );
         }
@@ -13,41 +15,45 @@ namespace ariel {
         }
         int rowLength=row;
         int collumLength=collum;
-        char sigh=a;
+        char symbol=a;
+        // create matrix of chars and allocate memory
         char** matrix = new char*[row];
         for (int i = 0; i < row; ++i){
             matrix[i] = new char[collum];
         }
-
+        // fill the bounds of the matrix until the row\collum number is less than 1
         while (row>=1 && collum>=1){
+            // find the index to start fill from
             int startIndex=(collumLength-collum)/2;
-
+            // find which char we should fill at this level
             if((collumLength-collum)%4==0){
-                sigh=a;
+                symbol=a;
             }
             else{
-                sigh=b;
+                symbol=b;
             }
-
+            // fill the bounds of the matrix for current level
             for (int i = startIndex; i <row+startIndex ; ++i) {
-                matrix[i][startIndex]=sigh;
-                matrix[i][collumLength-startIndex-1]=sigh;
+                matrix[i][startIndex]=symbol;
+                matrix[i][collumLength-startIndex-1]=symbol;
 
             }
             for (int i = startIndex; i <collum+startIndex ; ++i) {
-                matrix[startIndex][i]=sigh;
-                matrix[rowLength-startIndex-1][i]=sigh;
+                matrix[startIndex][i]=symbol;
+                matrix[rowLength-startIndex-1][i]=symbol;
             }
             row-=2;
             collum-=2;
         }
         string ans;
+        // convert the matrix to string
         for (int i = 0; i < rowLength; ++i) {
             for (int j = 0; j < collumLength; ++j) {
                 ans+= matrix[i][j];
             }
             ans+='\n';
         }
+        // free the matrix memory
         for (int i = 0; i < rowLength; ++i){
             delete [] matrix[i];
         }

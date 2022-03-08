@@ -1,14 +1,3 @@
-/**
- * An example of how to write unit tests.
- * Use this as a basis to build a more complete Test.cpp file.
- * 
- * IMPORTANT: Please write more tests - the tests here are only for example and are not complete.
- *
- * AUTHORS: <yuval sandler>
- * 
- * Date: 2021-02
- */
-
 #include "doctest.h"
 #include "mat.hpp"
 using namespace ariel;
@@ -46,7 +35,7 @@ TEST_CASE("Good input") {
         "@-@@@@@@@@@-@"
         "@-----------@"
         "@@@@@@@@@@@@@"));
-    // two inputs with one small and one larger
+    // two inputs with one small and large number
     CHECK(nospaces(mat(3, 19, '@', '-')) == nospaces(
         "@@@"
         "@-@"
